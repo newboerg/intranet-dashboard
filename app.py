@@ -18,7 +18,8 @@ PORT = int(os.getenv("PORT", "8080"))
 URL_CHECK_TIMEOUT = float(os.getenv("URL_CHECK_TIMEOUT", "3"))
 
 LANGUAGE = os.getenv("LANGUAGE", "de-de").strip().lower() or "de-de"
-LANG_DIR = os.getenv("LANG_DIR", "/config/lang").strip()
+CONFIG_LANG_DIR = os.getenv("LANG_DIR", "/config/lang").strip()
+APP_LANG_DIR = os.getenv("APP_LANG_DIR", "/app/lang").strip()
 
 DEFAULT_I18N = {
     "app": {
@@ -139,9 +140,13 @@ def load_yaml_file(path):
 
 
 def load_translations():
-    base = deep_merge(DEFAULT_I18N, load_yaml_file(os.path.join(LANG_DIR, "de-de.yaml")))
+    base = deep_merge(DEFAULT_I18N, load_yaml_file(os.path.join(APP_LANG_DIR, "de-de.yaml")))
+    base = deep_merge(base, load_yaml_file(os.path.join(CONFIG_LANG_DIR, "de-de.yaml")))
+
     if LANGUAGE != "de-de":
-        base = deep_merge(base, load_yaml_file(os.path.join(LANG_DIR, f"{LANGUAGE}.yaml")))
+        base = deep_merge(base, load_yaml_file(os.path.join(APP_LANG_DIR, f"{LANGUAGE}.yaml")))
+        base = deep_merge(base, load_yaml_file(os.path.join(CONFIG_LANG_DIR, f"{LANGUAGE}.yaml")))
+
     return base
 
 
