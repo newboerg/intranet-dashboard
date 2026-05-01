@@ -1,0 +1,60 @@
+services:
+  docker-socket-proxy:
+    image: tecnativa/docker-socket-proxy:latest
+    container_name: docker-socket-proxy
+    restart: unless-stopped
+    privileged: true
+    environment:
+      PING: "1"
+      VERSION: "1"
+      INFO: "1"
+      CONTAINERS: "1"
+      POST: "0"
+      BUILD: "0"
+      COMMIT: "0"
+      CONFIGS: "0"
+      DISTRIBUTION: "0"
+      EXEC: "0"
+      IMAGES: "0"
+      NETWORKS: "0"
+      NODES: "0"
+      PLUGINS: "0"
+      SECRETS: "0"
+      SERVICES: "0"
+      SESSION: "0"
+      SWARM: "0"
+      SYSTEM: "0"
+      TASKS: "0"
+      VOLUMES: "0"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - dashboard_internal
+    labels:
+      dashboard.hide: "true"
+
+  intranet-dashboard:
+    image: ${IMAGE:-ghcr.io/newboerg/intranet-dashboard:latest}
+    container_name: intranet-dashboard
+    restart: unless-stopped
+    environment:
+      DOCKER_HOST: tcp://docker-socket-proxy:2375
+      BASE_HOST: ${BASE_HOST:-intranet.lan}
+      DEFAULT_PROTOCOL: ${DEFAULT_PROTOCOL:-http}
+      REFRESH_SECONDS: ${REFRESH_SECONDS:-300}
+      CONFIG_PATH: /config/services.yaml
+      LANGUAGE: ${LANGUAGE:-de-de}
+    ports:
+      - "${PUBLISH_BIND:-127.0.0.1}:${PUBLISH_PORT:-8999}:8080"
+    volumes:
+      - ./config:/config
+    depends_on:
+      - docker-socket-proxy
+    networks:
+      - dashboard_internal
+    labels:
+      dashboard.hide: "true"
+
+networks:
+  dashboard_internal:
+    name: dashboard_internal

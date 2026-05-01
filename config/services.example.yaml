@@ -1,0 +1,32 @@
+services:
+  - name: "Router"
+    group: "Network"
+    favorite: true
+    note: "Example external service"
+    urls:
+      - name: "Web UI"
+        url: "http://192.168.1.1"
+
+  - name: "Jellyfin"
+    container: "jellyfin"
+    group: "Media"
+    favorite: true
+    note: "Example Docker service with custom DNS name"
+    urls:
+      - name: "Web UI"
+        url: "http://jellyfin.lan:8096"
+
+  - name: "Home Assistant"
+    container: "homeassistant"
+    group: "Smart Home"
+    note: "Example macvlan or host-network service"
+    disable_auto_links: true
+    urls:
+      - name: "Web UI"
+        url: "http://homeassistant.lan:8123"
+
+  - name: "Hidden Example"
+    container: "hidden-example"
+    group: "Docker"
+    hide: true
+    urls: []
