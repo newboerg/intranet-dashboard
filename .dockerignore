@@ -21,3 +21,4 @@ VERSION
 *.tar
 *.tar.gz
 RELEASE_NOTES.md
+.github_token
