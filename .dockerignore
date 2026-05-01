@@ -12,3 +12,12 @@ config/services.yaml.*
 config/*.bak*
 services.yaml
 services.yaml.*
+.dockerhub_token
+.ghcr_token
+*.token
+release.sh
+VERSION
+*.zip
+*.tar
+*.tar.gz
+RELEASE_NOTES.md

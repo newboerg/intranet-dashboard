@@ -1,11 +1,7 @@
-# Changelog
+## 1.0 - 2026-05-01
 
-All notable changes to this project should be documented in this file.
+- Initial public release.
+- Added Docker Hub and GHCR image publishing.
+- Added embedded language files inside the Docker image.
+- Added optional /config/lang override support.
 
-## [Unreleased]
-
-- Initial public project scaffolding.
-
-## [1.0.0] - YYYY-MM-DD
-
-- Initial release.

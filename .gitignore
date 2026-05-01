@@ -1,0 +1,17 @@
+.dockerhub_token
+.ghcr_token
+*.token
+config/services.yaml
+config/services.yaml.*
+services.yaml
+services.yaml.*
+__pycache__/
+*.pyc
+*.pyo
+*.bak
+*.log
+*.zip
+*.tar
+*.tar.gz
+README.txt
+AI_CONTEXT.txt
