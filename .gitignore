@@ -1,5 +1,6 @@
 .dockerhub_token
 .ghcr_token
+.github_token
 *.token
 config/services.yaml
 config/services.yaml.*
