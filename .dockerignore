@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pyo
+*.bak
+*.log
+.git/
+.github/
+README.txt
+AI_CONTEXT.txt
+config/services.yaml
+config/services.yaml.*
+config/*.bak*
+services.yaml
+services.yaml.*
